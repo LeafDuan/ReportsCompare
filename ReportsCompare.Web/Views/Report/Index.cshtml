@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Report Compare";
+}
+@section scripts
+{
+    <script src="/js/report.js"></script>
+    <script src="/js/block.js"></script>
+}
+@section styles
+{
+    <style>
+        table th, td { white-space: nowrap;vertical-align: middle !important; }
+        .reports { margin-top: 40px; }
+        .ui-menu {top: 104px !important;border-radius: 4px; }
+        .ui-state-active { border-radius: 4px; }
+        .ui-menu-item dd { display: inline; margin-left: 34px;}
+    </style>
+}
+<form action="javascript:void(0);" name="search">
+    <div class="form-group row">
+        <label for="code" class="col-sm-1 col-form-label">Code</label>
+        <div class="col-sm-10">
+            <input type="text" class="auto-stock form-control" id="code" name="code" placeholder="代码/简称/拼音缩写" data-val-required="" data-val="true" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="type" class="col-sm-1 col-form-label">Type</label>
+        <div class="col-sm-10">
+            <select id="type" name="type" class="form-control">
+                <option value="lrb">利润表</option>
+                <option value="fzb">资产表</option>
+                <option value="llb">现金表</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="minYear" class="col-sm-1 col-form-label">Min Year</label>
+        <div class="col-sm-10">
+            <select id="minYear" name="minYear" class="form-control">
+                <option selected="selected" value="@DateTime.Now.Year">@DateTime.Now.Year</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="maxYear" class="col-sm-1 col-form-label">Max Year</label>
+        <div class="col-sm-10">
+            <select id="maxYear" name="maxYear" class="form-control">
+                <option selected="selected" value="@DateTime.Now.Year">@DateTime.Now.Year</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-offset-1 col-sm-10">
+            <label class="form-check-label">
+                <input type="checkbox" name="reDownload" value="redo"/> Re-Download
+            </label>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-offset-1 col-sm-10">
+            <input type="hidden" id="market" name="market"/>
+            <input type="hidden" id="orgId" name="orgId" />
+            <button type="submit" class="btn btn-primary">Compare Reports</button>
+        </div>
+    </div>
+</form>
+<div class="reports"></div>
